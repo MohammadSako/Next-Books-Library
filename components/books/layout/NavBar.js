@@ -9,11 +9,6 @@ export function NavBar() {
   return (
     <>
       <Row className="justify-content-center">
-        {/* <img
-          src="/shawkat-white.png"
-          style={{ width: 250, marginTop: 20 }}
-          alt="shawkat"
-        /> */}
         <Image
           alt="shawkat"
           src={shawkat}
