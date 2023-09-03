@@ -21,7 +21,7 @@ function Layout(props) {
   }, [spinner]);
   return (
     <div className={Classes.home}>
-      <Container>
+      <Container className="pb-3">
         {loading && <BackDropSpinner />}
 
         <header>
