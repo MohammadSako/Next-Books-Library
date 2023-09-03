@@ -23,7 +23,6 @@ function Layout(props) {
     <div className={Classes.home}>
       <Container className="pb-3">
         {loading && <BackDropSpinner />}
-
         <header>
           <NavBar />
         </header>
