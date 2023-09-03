@@ -1,11 +1,10 @@
 import { MongoClient } from "mongodb";
-import { Fragment, Suspense } from "react";
+import { Fragment, Suspense, useEffect } from "react";
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import { wordActions } from "../store/word-Slice";
 import SearchPage from "./searchPage";
 import React from "react";
-import Loading from "./loading";
 
 const HomePage = (props) => {
   const dispatch = useDispatch();
@@ -18,9 +17,7 @@ const HomePage = (props) => {
         <title>مكتبة شوكت شحالتوغ</title>
         <meta name="Shawkat Library" content="Shawkat Library" />
       </Head>
-      <Suspense fallback={<Loading />}>
-        <SearchPage />
-      </Suspense>
+      <SearchPage />
     </Fragment>
   );
 };

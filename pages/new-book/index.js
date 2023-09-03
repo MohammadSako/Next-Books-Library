@@ -8,7 +8,8 @@ import { wordActions } from "../../store/word-Slice";
 function NewBookPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-
+  dispatch(wordActions.spinnerHandle(false));
+  
   const addBookHandler = useCallback(
     async (e) => {
       dispatch(wordActions.spinnerHandle(true));
@@ -28,7 +29,7 @@ function NewBookPage() {
   return (
     <Fragment>
       <Head>
-        <title>قم باضافة كتاب جديد</title>
+        <title>اضافة كتاب جديد</title>
         <meta name="description" content="Shawkat Library" />
       </Head>
       <h3>قم باضافة كتاب جديد</h3>

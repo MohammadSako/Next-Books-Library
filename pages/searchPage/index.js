@@ -11,7 +11,7 @@ const SearchPage = () => {
         <Col lg={6}>
           <SearchForm />
         </Col>
-      </Row>
+      </Row>{" "}
       <Row>
         <Col>
           <List />
