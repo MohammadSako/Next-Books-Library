@@ -236,4 +236,4 @@ const WordsList = () => {
   );
 };
 
-export default React.memo(WordsList);
+export default WordsList;

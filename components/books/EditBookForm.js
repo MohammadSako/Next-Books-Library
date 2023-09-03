@@ -404,15 +404,10 @@ const EditBookForm = (props) => {
               </Stack>
             </Row>
           </Form>
-          {/* {isChanged && (
-            <div style={{ color: "blue" }}>
-              <p>!لم تقم بأي تعديلات على الكتاب</p>
-            </div>
-          )} */}
         </Card.Body>
       </Card>
     </Container>
   );
 };
 
-export default React.memo(EditBookForm);
+export default EditBookForm;

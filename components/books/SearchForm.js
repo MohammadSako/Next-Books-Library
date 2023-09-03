@@ -2,7 +2,7 @@
 import { Container, Form } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { wordActions } from "../../store/word-Slice";
 import Classes from "./SearchForm.module.css";

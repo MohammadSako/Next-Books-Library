@@ -566,4 +566,4 @@ const EditBookForm = (props) => {
   );
 };
 
-export default React.memo(EditBookForm);
+export default EditBookForm;

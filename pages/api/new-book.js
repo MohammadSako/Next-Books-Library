@@ -3,8 +3,6 @@ import { MongoClient } from "mongodb";
 async function Handler(req, res) {
   if (req.method === "POST") {
     const data = req.body;
-    console.log(data);
-
     try {
       const client = await MongoClient.connect(
         "mongodb+srv://sakodatabase:EYmcsgXd4txjPb9L@cluster1.ksjs9y2.mongodb.net/shawkatData?retryWrites=true&w=majority"
