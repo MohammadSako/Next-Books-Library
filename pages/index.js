@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
-import { Fragment, Suspense, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import Head from "next/head";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { wordActions } from "../store/word-Slice";
 import SearchPage from "./searchPage";
 import React from "react";
@@ -27,7 +27,7 @@ export async function getServerSideProps() {
     "mongodb+srv://sakodatabase:EYmcsgXd4txjPb9L@cluster1.ksjs9y2.mongodb.net/shawkatData?retryWrites=true&w=majority"
   );
   const db = client.db();
-  const shawkatDataCollection = db.collection("data2");
+  const shawkatDataCollection = db.collection("data");
   const datas = await shawkatDataCollection.find().toArray();
   client.close();
   return {

@@ -3,13 +3,26 @@ import Col from "react-bootstrap/Col";
 import List from "../../components/books/list";
 import AdvancedSearchForm from "../../components/books/AdvancedSearch";
 import Head from "next/head";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { wordActions } from "../../store/word-Slice";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-const SearchPage = () => {
+const AdvSearchPage = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
-  dispatch(wordActions.spinnerHandle(false));
-  
+  const Data = useSelector((state) => state.word.words);
+
+  useEffect(() => {
+    dispatch(wordActions.spinnerHandle(false));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Data.length === 0) {
+      router.push("/");
+    }
+  }, [router, Data]);
+
   return (
     <>
       <Head>
@@ -30,4 +43,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default AdvSearchPage;
