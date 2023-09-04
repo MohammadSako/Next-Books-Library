@@ -47,7 +47,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredParts,
     isValid: enteredPartsIsValid,
-    hasError: partsInputHasError,
     valueChangeHandler: partsChangeHandler,
     inputBlurHandler: partsBlurHandler,
     reset: resetPartsInput,
@@ -56,7 +55,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredAbout,
     isValid: enteredAboutIsValid,
-    hasError: aboutInputHasError,
     valueChangeHandler: aboutChangeHandler,
     inputBlurHandler: aboutBlurHandler,
     reset: resetAboutInput,
@@ -65,7 +63,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredPrintNum,
     isValid: enteredPrintNumIsValid,
-    hasError: printNumInputHasError,
     valueChangeHandler: printNumChangeHandler,
     inputBlurHandler: printNumBlurHandler,
     reset: resetPrintNumInput,
@@ -74,7 +71,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredPrintYear,
     isValid: enteredPrintYearIsValid,
-    hasError: printYearInputHasError,
     valueChangeHandler: printYearChangeHandler,
     inputBlurHandler: printYearBlurHandler,
     reset: resetPrintYearInput,
@@ -83,7 +79,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredPublisher,
     isValid: enteredPublisherIsValid,
-    hasError: publisherInputHasError,
     valueChangeHandler: publisherChangeHandler,
     inputBlurHandler: publisherBlurHandler,
     reset: resetPublisherInput,
@@ -92,7 +87,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredCover,
     isValid: enteredCoverIsValid,
-    hasError: coverInputHasError,
     valueChangeHandler: coverChangeHandler,
     inputBlurHandler: coverBlurHandler,
     reset: resetCoverInput,
@@ -101,7 +95,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredLibrary,
     isValid: enteredLibraryIsValid,
-    hasError: libraryInputHasError,
     valueChangeHandler: libraryChangeHandler,
     inputBlurHandler: libraryBlurHandler,
     reset: resetLibraryInput,
@@ -110,7 +103,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredShelf,
     isValid: enteredShelfIsValid,
-    hasError: shelfInputHasError,
     valueChangeHandler: shelfChangeHandler,
     inputBlurHandler: shelfBlurHandler,
     reset: resetShelfInput,
@@ -119,7 +111,6 @@ const EditBookForm = (props) => {
   const {
     value: enteredBNum,
     isValid: enteredBNumIsValid,
-    hasError: bNumInputHasError,
     valueChangeHandler: bNumChangeHandler,
     inputBlurHandler: bNumBlurHandler,
     reset: resetBNumInput,
@@ -127,17 +118,13 @@ const EditBookForm = (props) => {
   //bNum
   const {
     value: enteredNotes,
-    hasError: notesInputHasError,
     valueChangeHandler: notesChangeHandler,
     inputBlurHandler: notesBlurHandler,
     reset: resetNotesInput,
   } = useInput((value) => value.trim() !== "");
 
   let formIsValid = false;
-  if (
-    enteredTitleIsValid &&
-    enteredWriterIsValid
-  ) {
+  if (enteredTitleIsValid && enteredWriterIsValid) {
     if (
       enteredTitle.length > 2 &&
       enteredWriter.length > 2 &&
@@ -146,22 +133,6 @@ const EditBookForm = (props) => {
       formIsValid = true;
     }
   }
-
-  // if (
-  //   enteredTitleIsValid &&
-  //   enteredWriterIsValid &&
-  //   enteredPartsIsValid &&
-  //   enteredAboutIsValid &&
-  //   enteredPrintNumIsValid &&
-  //   enteredPrintYearIsValid &&
-  //   enteredPublisherIsValid &&
-  //   enteredCoverIsValid &&
-  //   enteredLibraryIsValid &&
-  //   enteredShelfIsValid &&
-  //   enteredBNumIsValid
-  // ) {
-  //   formIsValid = true;
-  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -225,9 +196,6 @@ const EditBookForm = (props) => {
     resetNotesInput;
   };
 
-  console.log(enteredTitle.length > 2);
-  console.log(enteredTitleIsValid);
-
   return (
     <Container>
       <Card>
@@ -236,7 +204,9 @@ const EditBookForm = (props) => {
             <Row>
               <Col lg={6}>
                 <Form.Group as={Col} controlId="formGridWriter">
-                  <Form.Label><span style={{color:"red"}}>*</span>اسم المؤلف</Form.Label>
+                  <Form.Label>
+                    <span style={{ color: "red" }}>*</span>اسم المؤلف
+                  </Form.Label>
                   <Form.Control
                     dir="rtl"
                     type="text"
@@ -263,7 +233,9 @@ const EditBookForm = (props) => {
               </Col>
               <Col lg={6}>
                 <Form.Group as={Col} controlId="formGridTitle">
-                  <Form.Label><span style={{color:"red"}}>*</span>اسم الكتاب</Form.Label>
+                  <Form.Label>
+                    <span style={{ color: "red" }}>*</span>اسم الكتاب
+                  </Form.Label>
                   <Form.Control
                     dir="rtl"
                     type="text"
@@ -303,7 +275,6 @@ const EditBookForm = (props) => {
                     onBlur={aboutBlurHandler}
                     value={enteredAbout}
                   />
- 
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -318,7 +289,6 @@ const EditBookForm = (props) => {
                     onBlur={publisherBlurHandler}
                     value={enteredPublisher}
                   />
-                 
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -333,7 +303,6 @@ const EditBookForm = (props) => {
                     onBlur={printYearBlurHandler}
                     value={enteredPrintYear}
                   />
-                  
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -348,7 +317,6 @@ const EditBookForm = (props) => {
                     onBlur={partsBlurHandler}
                     value={enteredParts}
                   />
-                 
                 </Form.Group>
               </Col>
             </Row>
@@ -366,7 +334,6 @@ const EditBookForm = (props) => {
                     onBlur={coverBlurHandler}
                     value={enteredCover}
                   />
-                  
                 </Form.Group>
               </Col>
               <Col lg={2} sm={6}>
@@ -381,7 +348,6 @@ const EditBookForm = (props) => {
                     onBlur={libraryBlurHandler}
                     value={enteredLibrary}
                   />
-                 
                 </Form.Group>
               </Col>
               <Col lg={2} sm={6}>
@@ -396,7 +362,6 @@ const EditBookForm = (props) => {
                     onBlur={shelfBlurHandler}
                     value={enteredShelf}
                   />
-                  
                 </Form.Group>
               </Col>
               <Col lg={2} sm={6}>
@@ -411,7 +376,6 @@ const EditBookForm = (props) => {
                     onBlur={bNumBlurHandler}
                     value={enteredBNum}
                   />
-                  
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -426,7 +390,6 @@ const EditBookForm = (props) => {
                     onBlur={printNumBlurHandler}
                     value={enteredPrintNum}
                   />
-          
                 </Form.Group>
               </Col>
             </Row>
