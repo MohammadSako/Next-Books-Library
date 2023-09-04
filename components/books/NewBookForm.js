@@ -136,19 +136,32 @@ const EditBookForm = (props) => {
   let formIsValid = false;
   if (
     enteredTitleIsValid &&
-    enteredWriterIsValid &&
-    enteredPartsIsValid &&
-    enteredAboutIsValid &&
-    enteredPrintNumIsValid &&
-    enteredPrintYearIsValid &&
-    enteredPublisherIsValid &&
-    enteredCoverIsValid &&
-    enteredLibraryIsValid &&
-    enteredShelfIsValid &&
-    enteredBNumIsValid
+    enteredWriterIsValid
   ) {
-    formIsValid = true;
+    if (
+      enteredTitle.length > 2 &&
+      enteredWriter.length > 2 &&
+      enteredPublisher.length > 2
+    ) {
+      formIsValid = true;
+    }
   }
+
+  // if (
+  //   enteredTitleIsValid &&
+  //   enteredWriterIsValid &&
+  //   enteredPartsIsValid &&
+  //   enteredAboutIsValid &&
+  //   enteredPrintNumIsValid &&
+  //   enteredPrintYearIsValid &&
+  //   enteredPublisherIsValid &&
+  //   enteredCoverIsValid &&
+  //   enteredLibraryIsValid &&
+  //   enteredShelfIsValid &&
+  //   enteredBNumIsValid
+  // ) {
+  //   formIsValid = true;
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -212,6 +225,9 @@ const EditBookForm = (props) => {
     resetNotesInput;
   };
 
+  console.log(enteredTitle.length > 2);
+  console.log(enteredTitleIsValid);
+
   return (
     <Container>
       <Card>
@@ -220,10 +236,11 @@ const EditBookForm = (props) => {
             <Row>
               <Col lg={6}>
                 <Form.Group as={Col} controlId="formGridWriter">
-                  <Form.Label>اسم المؤلف</Form.Label>
+                  <Form.Label><span style={{color:"red"}}>*</span>اسم المؤلف</Form.Label>
                   <Form.Control
                     dir="rtl"
                     type="text"
+                    placeholder="الرجاء كتابة ثلاثة أحرف على الأقل"
                     ref={writerInputRef}
                     onChange={writerChangeHandler}
                     onBlur={writerBlurHandler}
@@ -246,10 +263,11 @@ const EditBookForm = (props) => {
               </Col>
               <Col lg={6}>
                 <Form.Group as={Col} controlId="formGridTitle">
-                  <Form.Label>اسم الكتاب</Form.Label>
+                  <Form.Label><span style={{color:"red"}}>*</span>اسم الكتاب</Form.Label>
                   <Form.Control
                     dir="rtl"
                     type="text"
+                    placeholder="الرجاء كتابة ثلاثة أحرف على الأقل"
                     ref={titleInputRef}
                     onChange={titleChangeHandler}
                     onBlur={titleBlurHandler}
@@ -279,25 +297,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="text"
-                    placeholder={props.About}
+                    placeholder="اكتب موضوع الكتاب"
                     ref={aboutInputRef}
                     onChange={aboutChangeHandler}
                     onBlur={aboutBlurHandler}
                     value={enteredAbout}
                   />
-                  {publisherInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      ! الرجاء كتابة ثلاثة أحرف على الأقل
-                    </p>
-                  )}
+ 
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -306,25 +312,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="text"
-                    placeholder={props.Publisher}
+                    placeholder="الرجاء كتابة ثلاثة أحرف على الأقل"
                     ref={publisherInputRef}
                     onChange={publisherChangeHandler}
                     onBlur={publisherBlurHandler}
                     value={enteredPublisher}
                   />
-                  {publisherInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      ! الرجاء كتابة ثلاثة أحرف على الأقل
-                    </p>
-                  )}
+                 
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -333,25 +327,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder={props.PrintYear}
+                    placeholder="ادخل تاريخ طباعة الكتاب"
                     ref={printYearInputRef}
                     onChange={printYearChangeHandler}
                     onBlur={printYearBlurHandler}
                     value={enteredPrintYear}
                   />
-                  {printYearInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      !الرجاء كتابة تاريخ الطبعة
-                    </p>
-                  )}
+                  
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -360,25 +342,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder={props.Parts}
+                    placeholder="ادخل عدد مجلدات الكتاب"
                     ref={partsInputRef}
                     onChange={partsChangeHandler}
                     onBlur={partsBlurHandler}
                     value={enteredParts}
                   />
-                  {partsInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      !الرجاء كتابة عدد المجلدات
-                    </p>
-                  )}
+                 
                 </Form.Group>
               </Col>
             </Row>
@@ -390,25 +360,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="text"
-                    placeholder={props.Cover}
+                    placeholder="ادخل نوع غلاف الكتاب"
                     ref={coverInputRef}
                     onChange={coverChangeHandler}
                     onBlur={coverBlurHandler}
                     value={enteredCover}
                   />
-                  {coverInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      ! الرجاء كتابة ثلاثة أحرف على الأقل
-                    </p>
-                  )}
+                  
                 </Form.Group>
               </Col>
               <Col lg={2} sm={6}>
@@ -417,25 +375,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder={props.Library}
+                    placeholder="ادخل رقم المكتبة"
                     ref={libraryInputRef}
                     onChange={libraryChangeHandler}
                     onBlur={libraryBlurHandler}
                     value={enteredLibrary}
                   />
-                  {libraryInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      !الرجاء كتابة رقم المكتبة
-                    </p>
-                  )}
+                 
                 </Form.Group>
               </Col>
               <Col lg={2} sm={6}>
@@ -444,25 +390,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder={props.Shelf}
+                    placeholder="ادخل رقم رف الكتاب"
                     ref={shelfInputRef}
                     onChange={shelfChangeHandler}
                     onBlur={shelfBlurHandler}
                     value={enteredShelf}
                   />
-                  {shelfInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      !الرجاء كتابة رقم الرف
-                    </p>
-                  )}
+                  
                 </Form.Group>
               </Col>
               <Col lg={2} sm={6}>
@@ -471,25 +405,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder={props.bNum}
+                    placeholder="ادخل رقم الكتاب"
                     ref={bNumInputRef}
                     onChange={bNumChangeHandler}
                     onBlur={bNumBlurHandler}
                     value={enteredBNum}
                   />
-                  {bNumInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      !الرجاء كتابة رقم الكتاب
-                    </p>
-                  )}
+                  
                 </Form.Group>
               </Col>
               <Col lg={3} sm={6}>
@@ -498,25 +420,13 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder={props.PrintNum}
+                    placeholder="ادخل رقم الطبعة"
                     ref={printNumInputRef}
                     onChange={printNumChangeHandler}
                     onBlur={printNumBlurHandler}
                     value={enteredPrintNum}
                   />
-                  {printNumInputHasError && (
-                    <p
-                      className="error-text"
-                      style={{
-                        backgroundColor: "rgb(255 0 0)",
-                        borderRadius: "5px",
-                        padding: "1px",
-                        color: "white",
-                      }}
-                    >
-                      !الرجاء كتابة رقم الطبعة
-                    </p>
-                  )}
+          
                 </Form.Group>
               </Col>
             </Row>
@@ -529,6 +439,7 @@ const EditBookForm = (props) => {
                     as="textarea"
                     dir="rtl"
                     type="text"
+                    placeholder="ادخل ملاحظاتك حول الكتاب"
                     ref={notesInputRef}
                     onChange={notesChangeHandler}
                     onBlur={notesBlurHandler}
