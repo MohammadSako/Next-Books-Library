@@ -26,10 +26,10 @@ const DeleteConfirmModal = (props) => {
         ))}
         <div className="d-grid gap-2">
           <Button variant="primary" onClick={cancelHandler}>
-            لا أوافق
+            لا أوافق على حذف الكتاب
           </Button>
           <Button variant="danger" onClick={deleteHandler}>
-            أوافق
+          أوافق على حذف الكتاب
           </Button>
         </div>
       </div>
