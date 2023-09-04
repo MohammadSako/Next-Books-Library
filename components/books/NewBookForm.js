@@ -269,7 +269,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="text"
-                    placeholder="اكتب موضوع الكتاب"
                     ref={aboutInputRef}
                     onChange={aboutChangeHandler}
                     onBlur={aboutBlurHandler}
@@ -297,7 +296,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder="ادخل تاريخ طباعة الكتاب"
                     ref={printYearInputRef}
                     onChange={printYearChangeHandler}
                     onBlur={printYearBlurHandler}
@@ -311,7 +309,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder="ادخل عدد مجلدات الكتاب"
                     ref={partsInputRef}
                     onChange={partsChangeHandler}
                     onBlur={partsBlurHandler}
@@ -328,7 +325,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="text"
-                    placeholder="ادخل نوع غلاف الكتاب"
                     ref={coverInputRef}
                     onChange={coverChangeHandler}
                     onBlur={coverBlurHandler}
@@ -342,7 +338,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder="ادخل رقم المكتبة"
                     ref={libraryInputRef}
                     onChange={libraryChangeHandler}
                     onBlur={libraryBlurHandler}
@@ -356,7 +351,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder="ادخل رقم رف الكتاب"
                     ref={shelfInputRef}
                     onChange={shelfChangeHandler}
                     onBlur={shelfBlurHandler}
@@ -370,7 +364,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder="ادخل رقم الكتاب"
                     ref={bNumInputRef}
                     onChange={bNumChangeHandler}
                     onBlur={bNumBlurHandler}
@@ -384,7 +377,6 @@ const EditBookForm = (props) => {
                   <Form.Control
                     dir="rtl"
                     type="number"
-                    placeholder="ادخل رقم الطبعة"
                     ref={printNumInputRef}
                     onChange={printNumChangeHandler}
                     onBlur={printNumBlurHandler}
