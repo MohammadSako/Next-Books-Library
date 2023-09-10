@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from "react";
+import { Fragment, useCallback, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import EditBookForm from "../../../components/books/EditBookForm";
@@ -9,6 +9,14 @@ const BooksEdit = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.word.editData);
+
+  useEffect(() => {
+    if (!data) {
+      router.push("/");
+      dispatch(wordActions.spinnerHandle(true));
+    }
+  }, [router, data, dispatch]);
+  
   const editBookHandler = useCallback(
     async (e) => {
       dispatch(wordActions.spinnerHandle(true));

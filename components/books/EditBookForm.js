@@ -13,7 +13,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { wordActions } from "../../store/word-Slice";
-import useIsChange from "./layout/use-isChange";
 import DeleteConfirmModal from "./UI/DeleteConfirmModal";
 import EditConfirmModal from "./UI/EditConfirmModal";
 
@@ -59,21 +58,25 @@ const EditBookForm = (props) => {
 
   //title
   const {
+    value: enteredTitle,
     isValid: enteredTitleIsValid,
+    hasError: titleInputHasError,
     valueChangeHandler: titleChangeHandler,
     inputBlurHandler: titleBlurHandler,
     reset: resetTitleInput,
-  } = useIsChange((value) => value.trim() !== "");
+  } = useInput((value) => value.trim() !== "");
   //writer
   const {
-    // value: enteredWriter,
+    value: enteredWriter,
     isValid: enteredWriterIsValid,
+    hasError: writerInputHasError,
     valueChangeHandler: writerChangeHandler,
     inputBlurHandler: writerBlurHandler,
     reset: resetWriterInput,
   } = useInput((value) => value.trim() !== "");
   //parts
   const {
+    value: enteredParts,
     isValid: enteredPartsIsValid,
     valueChangeHandler: partsChangeHandler,
     inputBlurHandler: partsBlurHandler,
@@ -81,6 +84,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //about
   const {
+    value: enteredAbout,
     isValid: enteredAboutIsValid,
     valueChangeHandler: aboutChangeHandler,
     inputBlurHandler: aboutBlurHandler,
@@ -88,6 +92,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //printNum
   const {
+    value: enteredPrintNum,
     isValid: enteredPrintNumIsValid,
     valueChangeHandler: printNumChangeHandler,
     inputBlurHandler: printNumBlurHandler,
@@ -95,6 +100,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //printYear
   const {
+    value: enteredPrintYear,
     isValid: enteredPrintYearIsValid,
     valueChangeHandler: printYearChangeHandler,
     inputBlurHandler: printYearBlurHandler,
@@ -102,6 +108,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //publisher
   const {
+    value: enteredPublisher,
     isValid: enteredPublisherIsValid,
     valueChangeHandler: publisherChangeHandler,
     inputBlurHandler: publisherBlurHandler,
@@ -109,6 +116,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //cover
   const {
+    value: enteredCover,
     isValid: enteredCoverIsValid,
     valueChangeHandler: coverChangeHandler,
     inputBlurHandler: coverBlurHandler,
@@ -116,6 +124,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //library
   const {
+    value: enteredLibrary,
     isValid: enteredLibraryIsValid,
     valueChangeHandler: libraryChangeHandler,
     inputBlurHandler: libraryBlurHandler,
@@ -123,6 +132,7 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //shelf
   const {
+    value: enteredShelf,
     isValid: enteredShelfIsValid,
     valueChangeHandler: shelfChangeHandler,
     inputBlurHandler: shelfBlurHandler,
@@ -130,21 +140,32 @@ const EditBookForm = (props) => {
   } = useInput((value) => value.trim() !== "");
   //bNum
   const {
+    value: enteredBNum,
     isValid: enteredBNumIsValid,
     valueChangeHandler: bNumChangeHandler,
     inputBlurHandler: bNumBlurHandler,
     reset: resetBNumInput,
   } = useInput((value) => value.trim() !== "");
-  //bNum
+  //Notes
   const {
-    isValid: enteredNotesIsValid,
+    value: enteredNotes,
     valueChangeHandler: notesChangeHandler,
     inputBlurHandler: notesBlurHandler,
     reset: resetNotesInput,
   } = useInput((value) => value.trim() !== "");
 
-  //Submit
+  let formIsValid = false;
+  if (enteredTitleIsValid && enteredWriterIsValid) {
+    if (enteredTitle.length > 2 && enteredWriter.length > 2) {
+      formIsValid = true;
+    }
+  }
+
   const submitHandler = () => {
+    if (!enteredTitleIsValid && !enteredWriterIsValid) {
+      return;
+    }
+
     const enteredTitle = titleInputRef.current.value;
     const enteredWriter = writerInputRef.current.value;
     const enteredParts = partsInputRef.current.value;
@@ -157,6 +178,7 @@ const EditBookForm = (props) => {
     const enteredShelf = shelfInputRef.current.value;
     const enteredBNum = bNumInputRef.current.value;
     const enteredNotes = notesInputRef.current.value;
+
     const bookData = {
       bName: enteredTitle,
       bWriter: enteredWriter,
@@ -190,6 +212,7 @@ const EditBookForm = (props) => {
   const bookEditHandler = () => {
     dispatch(wordActions.editConfirmClose(true));
   };
+
   const bookDeleteHandler = () => {
     dispatch(wordActions.deleteConfirmClose(true));
   };
@@ -219,6 +242,19 @@ const EditBookForm = (props) => {
                     defaultValue={bWriter}
                     // value={enteredWriter}
                   />
+                  {writerInputHasError && (
+                    <p
+                      className="error-text"
+                      style={{
+                        backgroundColor: "rgb(255 0 0)",
+                        borderRadius: "5px",
+                        padding: "1px",
+                        color: "white",
+                      }}
+                    >
+                      ! الرجاء كتابة ثلاثة أحرف على الأقل
+                    </p>
+                  )}
                 </Form.Group>
               </Col>
               <Col lg={6}>
@@ -233,10 +269,22 @@ const EditBookForm = (props) => {
                     // value={enteredTitle}
                     defaultValue={bName}
                   />
+                  {titleInputHasError && (
+                    <p
+                      className="error-text"
+                      style={{
+                        backgroundColor: "rgb(255 0 0)",
+                        borderRadius: "5px",
+                        padding: "1px",
+                        color: "white",
+                      }}
+                    >
+                      ! الرجاء كتابة ثلاثة أحرف على الأقل
+                    </p>
+                  )}
                 </Form.Group>
               </Col>
             </Row>
-
             <Row>
               <Col lg={3} sm={6}>
                 <Form.Group as={Col} controlId="formGridAbout">
@@ -387,7 +435,11 @@ const EditBookForm = (props) => {
                 </div>
                 <div className="p-2">
                   <Col>
-                    <Button onClick={bookEditHandler} variant="primary">
+                    <Button
+                      disabled={!formIsValid}
+                      onClick={bookEditHandler}
+                      variant="primary"
+                    >
                       تعديل
                     </Button>
                   </Col>
@@ -410,4 +462,4 @@ const EditBookForm = (props) => {
   );
 };
 
-export default EditBookForm;
+export default React.memo(EditBookForm);
